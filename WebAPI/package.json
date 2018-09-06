@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "name": "money-loaner",
+  "private": true,
+  "author": "Roman Holovko",
+  "dependencies": {
+    "@angular/common": "~6.1.6",
+    "@angular/compiler": "~6.1.6",
+    "@angular/core": "~6.1.6",
+    "@angular/forms": "~6.1.6",
+    "@angular/platform-browser": "~6.1.6",
+    "@angular/platform-browser-dynamic": "~6.1.6",
+    "@angular/router": "~6.1.6",
+    "core-js": "^2.5.7",
+    "rxjs": "^6.3.2",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@types/node": "^10.9.4",
+    "@types/webpack-env": "^1.13.6",
+    "typescript": "^3.1.0-dev.20180905",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "3.1.7",
+    "webpack-dev-middleware": "3.2.0",
+    "webpack-hot-middleware": "^2.23.1",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^5.2.0",
+    "uglifyjs-webpack-plugin": "^1.3.0",
+    "aspnet-prerendering": "^3.0.1",
+    "aspnet-webpack": "^3.0.0",
+    "raw-loader": "^0.5.1",
+    "html-loader": "^0.5.5"
+  }
+}

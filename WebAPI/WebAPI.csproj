@@ -2,10 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <UserSecretsId>7af4eb6f-06e1-4b3e-8a61-3049465027dd</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <None Remove="ClientApp\app\app.component.ts" />
+    <None Remove="ClientApp\app\app.module.ts" />
+    <None Remove="ClientApp\app\models\address.ts" />
+    <None Remove="ClientApp\app\models\borrower.ts" />
+    <None Remove="ClientApp\app\models\credit.ts" />
+    <None Remove="ClientApp\app\services\credits.service.ts" />
+    <None Remove="ClientApp\main.ts" />
+    <None Remove="ClientApp\polyfills.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +27,17 @@
     <ProjectReference Include="..\Bootstrap\Bootstrap.csproj" />
     <ProjectReference Include="..\Cross-Cutting\Cross-Cutting.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\address.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\borrower.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\credit.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\credits.service.ts" />
+    <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\polyfills.ts" />
   </ItemGroup>
 
 </Project>

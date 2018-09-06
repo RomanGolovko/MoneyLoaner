@@ -1,0 +1,93 @@
+﻿<h1>Credits list</h1>
+<input type="button" value="Add" class="btn btn-default" (click)="add()" />
+<table *ngIf="tableMode; else create" class="table table-striped">
+    <thead>
+        <tr>
+            <td>First name</td>
+            <td>Last name</td>
+            <td>Amount</td>
+            <td>Currency</td>
+            <td>Since</td>
+            <td>Till</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of credits">
+            <ng-template [ngIf]="credit?.id != c.id" [ngIfElse]="edit">
+                <td>{{c?.borrower?.firstName}}</td>
+                <td>{{c?.borrower?.lastName}}</td>
+                <td>{{c?.amount}}</td>
+                <td>{{c?.currency}}</td>
+                <td>{{c?.since}}</td>
+                <td>{{c?.till}}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" (click)="editCredit(c)">Update</button>
+                    <button class="btn btn-sm btn-danger" (click)="delete(c)">Delete</button>
+                </td>
+            </ng-template>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #edit>
+    <div class="form-group">
+        <label>First name</label>
+        <input type="text" [(ngModel)]="credit.borrower.firstName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Last name</label>
+        <input type="text" [(ngModel)]="credit.borrower.lastName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Amount</label>
+        <input type="text" [(ngModel)]="credit.amount" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Currency</label>
+        <input type="text" [(ngModel)]="credit.currency" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Since</label>
+        <input type="text" [(ngModel)]="credit.since" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Till</label>
+        <input type="text" [(ngModel)]="credit.till" class="form-control" />
+    </div>
+    <div>
+        <input type="button" value="Save" (click)="save()" class="btn btn-success" />
+        <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+    </div>
+</ng-template>
+
+<ng-template #create>
+    <div class="form-group">
+        <label>First name</label>
+        <input type="text" [(ngModel)]="credit.borrower.firstName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Last name</label>
+        <input type="text" [(ngModel)]="credit.borrower.lastName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Amount</label>
+        <input type="text" [(ngModel)]="credit.amount" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Currency</label>
+        <input type="text" [(ngModel)]="credit.currency" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Since</label>
+        <input type="text" [(ngModel)]="credit.since" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Till</label>
+        <input type="text" [(ngModel)]="credit.till" class="form-control" />
+    </div>
+    <div>
+        <input type="button" value="Save" (click)="save()" class="btn btn-success" />
+        <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+    </div>
+</ng-template>

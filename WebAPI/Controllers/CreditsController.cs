@@ -7,20 +7,20 @@ using WebAPI.ViewModels;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/credits")]
     [ApiController]
-    public class CreditController : ControllerBase
+    public class CreditsController : ControllerBase
     {
         private readonly IReadService<Credit> _creditReadService;
         private readonly IWriteService<Credit> _creditWriteService;
 
-        public CreditController(IReadService<Credit> crs, IWriteService<Credit> cws)
+        public CreditsController(IReadService<Credit> crs, IWriteService<Credit> cws)
         {
             _creditReadService = crs;
             _creditWriteService = cws;
         }
 
-        // GET: api/Credit
+        // GET: api/Credits
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
             return Ok(credits);
         }
 
-        // GET: api/Credit/5
+        // GET: api/Credits/5
         [HttpGet("{id}", Name = "Get")]
         public async Task<IActionResult> Get(int id)
         {
@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
             return Ok(credit);
         }
 
-        // POST: api/Credit
+        // POST: api/Credits
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreditViewModel credit)
         {
@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
             return Ok($"Credit was {state}");
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Credits/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
