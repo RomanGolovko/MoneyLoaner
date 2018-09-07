@@ -18,11 +18,11 @@ export class CreditsService {
         return this.http.get(this.url + '/' + id);
     }
 
-    saveCredit(product: Credit) {
-        return this.http.post(this.url, product);
+    saveCredit(credit: Credit) {
+        return this.http.post(this.url, credit);
     }
 
     deleteCredit(id: number) {
-        return this.http.delete(this.url + '/' + id);
+        return this.http.delete(this.url + '/' + id, { responseType: 'text' });
     }
 }

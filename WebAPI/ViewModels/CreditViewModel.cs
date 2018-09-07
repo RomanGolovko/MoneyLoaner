@@ -2,9 +2,8 @@
 
 namespace WebAPI.ViewModels
 {
-    public class CreditViewModel
+    public class CreditViewModel : BaseViewModel
     {
-        public int? Id { get; set; }
         public BorrowerViewModel Borrower { get; set; }
         public decimal? Amount { get; set; }
         public string Currency { get; set; }
