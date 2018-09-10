@@ -29,9 +29,9 @@ export class AppComponent implements OnInit {
     }
 
     save(): void {
-        if (this.credit.id == null) {
+        if (this.credit.id == 0) {
             this.creditsService.saveCredit(this.credit)
-                .subscribe((data: Credit) => this.credits.push(data));
+                .subscribe(data => this.loadCredits());
         } else {
             this.creditsService.saveCredit(this.credit)
                 .subscribe(data => this.loadCredits());

@@ -19,7 +19,7 @@ export class CreditsService {
     }
 
     saveCredit(credit: Credit) {
-        return this.http.post(this.url, credit);
+        return this.http.post(this.url, credit, { responseType: 'text' });
     }
 
     deleteCredit(id: number) {
