@@ -12,6 +12,13 @@ namespace BLLTest.Services
 {
     public class CreditReadServiceTest
     {
+        private readonly Mock<IUnitOfWork> _uowMock;
+
+        public CreditReadServiceTest()
+        {
+            _uowMock = new Mock<IUnitOfWork>();
+        }
+
         [Fact]
         public async void CanGetAllCreditsWithCorrectType()
         {
@@ -19,11 +26,10 @@ namespace BLLTest.Services
             var tsc = new TaskCompletionSource<IEnumerable<CreditEntity>>();
             tsc.SetResult(new List<CreditEntity> { new CreditEntity(), new CreditEntity() } as IEnumerable<CreditEntity>);
 
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.ReadCredits.GetAll()).Returns(tsc.Task);
-            var creditReadService = new CreditReadService(mock.Object);
+            _uowMock.Setup(x => x.ReadCredits.GetAll()).Returns(tsc.Task);
+            var creditReadService = new CreditReadService(_uowMock.Object);
 
-            // Arrange
+            // Act
             var result = await creditReadService.GetAllCredits();
 
             // Assert
@@ -38,9 +44,8 @@ namespace BLLTest.Services
             var tsc = new TaskCompletionSource<CreditEntity>();
             tsc.SetResult(new CreditEntity());
 
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.ReadCredits.Get(It.IsAny<int>())).Returns(tsc.Task);
-            var creditReadService = new CreditReadService(mock.Object);
+            _uowMock.Setup(x => x.ReadCredits.Get(It.IsAny<int>())).Returns(tsc.Task);
+            var creditReadService = new CreditReadService(_uowMock.Object);
 
             // Act
             var result = await creditReadService.GetCreditById(It.IsAny<int>());

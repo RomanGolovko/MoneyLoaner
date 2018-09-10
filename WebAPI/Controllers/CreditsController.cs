@@ -2,6 +2,7 @@
 using Cross_Cutting.Mapping;
 using Microsoft.AspNetCore.Mvc;
 using Models.Business;
+using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.ViewModels;
 
@@ -25,7 +26,7 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Get()
         {
             var credits = new CustomMapper<Credit, CreditViewModel>().MapCollection(await _creditReadService.GetAllCredits());
-            if (credits == null)
+            if (credits.Count() <= 0)
                 return NotFound();
 
             return Ok(credits);

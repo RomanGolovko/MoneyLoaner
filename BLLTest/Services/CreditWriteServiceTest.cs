@@ -10,20 +10,26 @@ namespace BLLTest.Services
 {
     public class CreditWriteServiceTest
     {
+        private readonly Mock<IUnitOfWork> _uowMock;
+
+        public CreditWriteServiceTest()
+        {
+            _uowMock = new Mock<IUnitOfWork>();
+        }
+
         [Fact]
         public async void CanDeleteCreditAsync()
         {
             // Arrange 
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.WriteCredits.Delete(5)).Returns(() => Task.FromResult(1));
-            var creditWriteService = new CreditWriteService(mock.Object);
+            _uowMock.Setup(x => x.WriteCredits.Delete(5)).Returns(() => Task.FromResult(1));
+            var creditWriteService = new CreditWriteService(_uowMock.Object);
 
             // Act
             await creditWriteService.RemoveCredit(5);
 
             // Assert
-            mock.Verify(x => x.WriteCredits.Delete(5), Times.Once);
-            mock.Verify(x => x.Save(), Times.Once);
+            _uowMock.Verify(x => x.WriteCredits.Delete(5), Times.Once);
+            _uowMock.Verify(x => x.Save(), Times.Once);
         }
 
         [Fact]
@@ -32,18 +38,17 @@ namespace BLLTest.Services
             // Arrange
             var credit = new Credit { Id = 0 };
 
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.WriteCredits.Create(It.IsAny<CreditEntity>())).Returns(() => Task.FromResult(1));
-            mock.Setup(x => x.WriteCredits.Update(It.IsAny<CreditEntity>())).Returns(() => Task.FromResult(1));
-            var creditWriteService = new CreditWriteService(mock.Object);
+            _uowMock.Setup(x => x.WriteCredits.Create(It.IsAny<CreditEntity>())).Returns(() => Task.FromResult(1));
+            _uowMock.Setup(x => x.WriteCredits.Update(It.IsAny<CreditEntity>())).Returns(() => Task.FromResult(1));
+            var creditWriteService = new CreditWriteService(_uowMock.Object);
 
             // Act
             await creditWriteService.UpsertCredit(credit);
 
             // Assert
-            mock.Verify(x => x.WriteCredits.Create(It.IsAny<CreditEntity>()), Times.Once);
-            mock.Verify(x => x.WriteCredits.Update(It.IsAny<CreditEntity>()), Times.Never);
-            mock.Verify(x => x.Save(), Times.Once);
+            _uowMock.Verify(x => x.WriteCredits.Create(It.IsAny<CreditEntity>()), Times.Once);
+            _uowMock.Verify(x => x.WriteCredits.Update(It.IsAny<CreditEntity>()), Times.Never);
+            _uowMock.Verify(x => x.Save(), Times.Once);
         }
 
         [Fact]
@@ -52,18 +57,17 @@ namespace BLLTest.Services
             // Arrange
             var credit = new Credit { Id = 13 };
 
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.WriteCredits.Create(It.IsAny<CreditEntity>())).Returns(() => Task.FromResult(1));
-            mock.Setup(x => x.WriteCredits.Update(It.IsAny<CreditEntity>())).Returns(() => Task.FromResult(1));
-            var creditWriteService = new CreditWriteService(mock.Object);
+            _uowMock.Setup(x => x.WriteCredits.Create(It.IsAny<CreditEntity>())).Returns(() => Task.FromResult(1));
+            _uowMock.Setup(x => x.WriteCredits.Update(It.IsAny<CreditEntity>())).Returns(() => Task.FromResult(1));
+            var creditWriteService = new CreditWriteService(_uowMock.Object);
 
             // Act
             await creditWriteService.UpsertCredit(credit);
 
             // Assert
-            mock.Verify(x => x.WriteCredits.Update(It.IsAny<CreditEntity>()), Times.Once);
-            mock.Verify(x => x.WriteCredits.Create(It.IsAny<CreditEntity>()), Times.Never);
-            mock.Verify(x => x.Save(), Times.Once);
+            _uowMock.Verify(x => x.WriteCredits.Update(It.IsAny<CreditEntity>()), Times.Once);
+            _uowMock.Verify(x => x.WriteCredits.Create(It.IsAny<CreditEntity>()), Times.Never);
+            _uowMock.Verify(x => x.Save(), Times.Once);
         }
     }
 }
